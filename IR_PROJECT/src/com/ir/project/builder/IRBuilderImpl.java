@@ -25,7 +25,7 @@ public class IRBuilderImpl implements IRBuilder {
 		return lines.collect(Collectors.toSet());
 	}
 
-	public List<Stream<String>> buildOriginalFiles(Set<String> stpSet) {
+	public List<Stream<String>> buildOriginalFiles() {
 		URL urlToFile = IRBuilderImpl.class.getResource("/ORIGIAL_DOCUMENT");
 		List<Stream<String>> files = null;
 		try {
