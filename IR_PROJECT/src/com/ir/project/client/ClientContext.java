@@ -14,14 +14,16 @@ public class ClientContext {
 		
 		Set<String> stopWords = builder.buildStopWords();
 		
-		List<Stream<String>> originalFiles = builder.buildOriginalFiles(stopWords);
+		List<Stream<String>> originalFiles = builder.buildOriginalFiles();
 		
 		int i = 1;
 		for (Stream<String> stream : originalFiles) {
 			
-			String st = stream.map(e -> new String(e)).findAny().get();
-		
-			String filterOriginalFiles = builder.filterOriginalFiles(stopWords, st);
+			StringBuilder st = new StringBuilder();
+			
+			stream.forEach(e->st.append(e));
+			
+			String filterOriginalFiles = builder.filterOriginalFiles(stopWords, st.toString());
 			
 			builder.buildStpFiles(filterOriginalFiles, i);
 			
