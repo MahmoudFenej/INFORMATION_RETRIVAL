@@ -8,7 +8,7 @@ public interface IRBuilder {
 
 	public Set<String> buildStopWords();
 
-	public List<Stream<String>> buildOriginalFiles(Set<String> stpSet);
+	public List<Stream<String>> buildOriginalFiles();
 
 	public String filterOriginalFiles(Set<String> stpSet, String st);
 
