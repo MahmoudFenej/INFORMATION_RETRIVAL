@@ -1,6 +1,6 @@
 package com.ir.project.builder;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -8,10 +8,18 @@ public interface IRBuilder {
 
 	public Set<String> buildStopWords();
 
-	public List<Stream<String>> buildOriginalFiles();
+	public Map<String,Stream<String>> buildOriginalFiles() throws Exception;
 
-	public String filterOriginalFiles(Set<String> stpSet, String st);
+	public String filterOriginalFile(Set<String> stpSet, String st);
 
-	public void buildStpFiles(String st, int i);
+	public String buildStpFiles(String st, String fileName);
+	
+	public void createBooleanMatrix(String filtredtext, String fileName);
+	
+	public void createVectorMatrix(String filtredtext, String fileName);
+	
+	public Map<String, Double> createBooleanCosTable(String query,Map<String, String> booleanByWordMap);
+
+	public Map<String, Double> createTfidfCosTable(String query,Map<String, String> tfidfByWordMap, Map<String, Integer> documentFreqMap);
 
 }

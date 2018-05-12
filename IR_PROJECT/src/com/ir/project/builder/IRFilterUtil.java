@@ -18,7 +18,16 @@ public class IRFilterUtil {
 		Matcher match = pt.matcher(withoutCommas);
 		while (match.find()) {
 			String s = match.group();
-			withoutCommas = withoutCommas.replaceAll("\\" + s, "");
+			withoutCommas = withoutCommas.replaceAll("\\" + s, " ");
+		}
+		return withoutCommas;
+	}
+	public String replacesemiColumn(String withoutCommas) {
+		Pattern pt = Pattern.compile("\\s;");
+		Matcher match = pt.matcher(withoutCommas);
+		while (match.find()) {
+			String s = match.group();
+			withoutCommas = withoutCommas.replaceAll("\\" + s, " ");
 		}
 		return withoutCommas;
 	}
@@ -28,18 +37,23 @@ public class IRFilterUtil {
 		Matcher match = pt.matcher(withoutStopWord);
 		while (match.find()) {
 			String s = match.group();
-			withoutStopWord = withoutStopWord.replaceAll("\\" + s, "");
+			withoutStopWord = withoutStopWord.replaceAll("\\" + s, " ");
 		}
 		return withoutStopWord;
 	}
 
 	public String replacePunctuation(String withoutStopWord) {
-		Pattern pt = Pattern.compile("\\s*\\p{Punct}+\\s*$");
-		Matcher match = pt.matcher(withoutStopWord);
-		while (match.find()) {
-			String s = match.group();
-			withoutStopWord = withoutStopWord.replaceAll("\\" + s, "");
-		}
-		return withoutStopWord;
+		return withoutStopWord.toLowerCase().replaceAll("[^a-z]+", " ");
 	}
+	public String stemmring(String withoutStopWord) {
+		String result="";
+		PorterStemmer stemmer=new PorterStemmer();
+		String[]splittedDocument=withoutStopWord.split(" ");
+		for(int wordIndex=0;wordIndex<splittedDocument.length;wordIndex++) {
+			if(!splittedDocument[wordIndex].isEmpty())
+				result+=" "+stemmer.stemWord(splittedDocument[wordIndex].trim());
+		}
+		return result;
+	}
+	
 }
