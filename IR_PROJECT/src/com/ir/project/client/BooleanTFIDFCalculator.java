@@ -13,7 +13,7 @@ public class BooleanTFIDFCalculator {
 
 	public static void main(String[] args) throws Exception {
 		generateBooleanTfidf();
-
+         
 	}
 
 	public static void generateBooleanTfidf() throws Exception {

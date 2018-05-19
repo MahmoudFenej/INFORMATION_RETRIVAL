@@ -64,7 +64,7 @@ public class IRBuilderImpl implements IRBuilder {
 
 	public String buildStpFiles(String st, String fileName) {
 		fileName = fileName.replace(".txt", "");
-		File file = new File("/Users/mahmo/Desktop/IR_WORKSPACE/IR_PROJECT/src/STP_DOCUMENT/" + fileName + ".stp");
+		File file = new File("/home/mahmoudfenej/Desktop/INFORMATION_RETRIVAL-master/IR_PROJECT/src/STP_DOCUMENT/" + fileName + ".stp");
 		try {
 			if (file.createNewFile()) {
 				System.out.println("File is created!");
