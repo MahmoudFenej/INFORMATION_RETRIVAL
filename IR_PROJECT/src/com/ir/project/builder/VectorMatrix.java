@@ -114,7 +114,7 @@ public class VectorMatrix {
 		}
 		sb.append("\n");
 	
-		for (int row =0;row<documents.size();row++) {
+	/*	for (int row =0;row<documents.size();row++) {
 			for (int column =0;column<words.size();column++) {
 				if(column==0) {
 					sb.append(documents.get(row));
@@ -124,7 +124,7 @@ public class VectorMatrix {
 				sb.append(",");
 			}
 			sb.append("\n");
-		}
+		}*/
 		sb.append("DF");
 		sb.append(",");
 		for (String element : words) {

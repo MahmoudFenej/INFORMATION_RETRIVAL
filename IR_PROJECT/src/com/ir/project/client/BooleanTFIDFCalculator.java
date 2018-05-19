@@ -13,7 +13,7 @@ public class BooleanTFIDFCalculator {
 
 	public static void main(String[] args) throws Exception {
 		generateBooleanTfidf();
-         
+
 	}
 
 	public static void generateBooleanTfidf() throws Exception {
@@ -33,13 +33,13 @@ public class BooleanTFIDFCalculator {
 
 			String filtredtext = builder.buildStpFiles(filterOriginalFiles, fileName);
 
-			builder.createBooleanMatrix(filtredtext, fileName);
+//			builder.createBooleanMatrix(filtredtext, fileName);
 			builder.createVectorMatrix(filtredtext, fileName);
 
 		});
-		BooleanMatrix.getinstance().toCsv();
+//		BooleanMatrix.getinstance().toCsv();
 		VectorMatrix.getinstance().toCsv();
-		VectorMatrix.getinstance().tfidfToCsv();
+//		VectorMatrix.getinstance().tfidfToCsv();
 
 	}
 }

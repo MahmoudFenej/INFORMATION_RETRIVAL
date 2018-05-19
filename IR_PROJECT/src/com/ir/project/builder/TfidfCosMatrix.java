@@ -55,4 +55,7 @@ public class TfidfCosMatrix {
 
 	}
 
+	public Map<String, Double> getDocumentsByCos() {
+		return documentsByCos;
+	}
 }

@@ -5,9 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,16 +12,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.stream.Stream;
 
 import com.ir.project.builder.IRBuilderImpl;
+import com.ir.project.builder.IRFilterUtil;
 
 public class PrecisionRecallCalculator {
 
 	public static void main(String[] args) {
+		GenerateRecallPrecision();
+
+	}
+
+	public static void GenerateRecallPrecision() {
 		Map<String, Set<String>> relevanceDocByQueryMap = getRelevanceDocByQueryMap();
-		long documentCount = documentCount();
-		Set<String> documentSet = relevanceDocByQueryMap.get("1");
+		long documentCount = IRFilterUtil.documentCount();
+		Set<String> documentSet = relevanceDocByQueryMap.get("2");
 		List<Double> precisionList = new ArrayList<>();
 		List<Double> recallList = new ArrayList<>();
 		double retreived = 0, relevantRetreived = 0, relevant = documentSet.size();
@@ -39,25 +41,11 @@ public class PrecisionRecallCalculator {
 		}
 		new LineChart(precisionList,"Precision");
 		new LineChart(recallList,"Recall");
-
-	}
-
-	private static long documentCount() {
-		URL urlToFile = IRBuilderImpl.class.getResource("/ORIGIAL_DOCUMENT");
-		String path = urlToFile.getPath();
-		if (path.contains(":"))
-			path = path.replaceAll("/C:", "");
-		try (Stream<Path> files = Files.list(Paths.get(path))) {
-			return files.count();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return 0;
 	}
 
 	private static Map<String, Set<String>> getRelevanceDocByQueryMap() {
 		Map<String, Set<String>> map = new HashMap<>();
-		URL urlToFile = IRBuilderImpl.class.getResource("/relevance.txt");
+		URL urlToFile = IRBuilderImpl.class.getResource("/MED.txt");
 		String path = urlToFile.getPath();
 		if (path.contains(":"))
 			path = path.replaceAll("/C:", "");
