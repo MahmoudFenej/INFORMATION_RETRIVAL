@@ -17,6 +17,7 @@ public class IRGenerationPanel {
 	private JButton generateCosBtn;
 	private JButton generateRecallAndPrecisionBtn;
 	private JTextField queryTxtField;
+	private JTextField queryNumberTxtField;
 	private DefaultFormBuilder defaultFormBuilder;
 	
 	public IRGenerationPanel() {
@@ -33,7 +34,7 @@ public class IRGenerationPanel {
 	}
 
 	private void generateRecallPrecisionAction() {
-		PrecisionRecallCalculator.GenerateRecallPrecision();
+		new PrecisionRecallCalculator(queryNumberTxtField.getText());
 	}
 
 	private void generateBooleanTfidfAction() {
@@ -54,6 +55,8 @@ public class IRGenerationPanel {
 		generateBooleanTfidfBtn = new JButton("click to generate");
 		queryTxtField = new JTextField();
 		generateCosBtn = new JButton("Generate Cosine");
+		queryTxtField = new JTextField();
+		queryNumberTxtField = new JTextField();
 		generateRecallAndPrecisionBtn = new JButton("Generate recall/precision");
 				
 
@@ -77,6 +80,9 @@ public class IRGenerationPanel {
 		defaultFormBuilder.append(new JLabel("Generate Boolean and tfidf"), generateBooleanTfidfBtn);
 		defaultFormBuilder.append(new JLabel("write query"), queryTxtField);
 		defaultFormBuilder.append(generateCosBtn, 3);
+		defaultFormBuilder.append(new JLabel("query Number"),queryNumberTxtField);
+		defaultFormBuilder.append(generateRecallAndPrecisionBtn, 3);
+		
 	}
 
 }

@@ -17,16 +17,20 @@ import com.ir.project.builder.IRBuilderImpl;
 import com.ir.project.builder.IRFilterUtil;
 
 public class PrecisionRecallCalculator {
-
 	public static void main(String[] args) {
-		GenerateRecallPrecision();
+		GenerateRecallPrecision("1");
 
 	}
+	public PrecisionRecallCalculator(String queryNumber) {
+		GenerateRecallPrecision(queryNumber);
+	}
 
-	public static void GenerateRecallPrecision() {
+
+
+	public static void GenerateRecallPrecision(String queryNumber) {
 		Map<String, Set<String>> relevanceDocByQueryMap = getRelevanceDocByQueryMap();
 		long documentCount = IRFilterUtil.documentCount();
-		Set<String> documentSet = relevanceDocByQueryMap.get("2");
+		Set<String> documentSet = relevanceDocByQueryMap.get(queryNumber);
 		List<Double> precisionList = new ArrayList<>();
 		List<Double> recallList = new ArrayList<>();
 		double retreived = 0, relevantRetreived = 0, relevant = documentSet.size();
